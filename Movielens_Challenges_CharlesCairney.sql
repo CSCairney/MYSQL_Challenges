@@ -33,12 +33,14 @@ WHERE u.age = 24
 ORDER BY m.title asc;
 
 -- Question 4
--- Stuck On this one
-SELECT DISTINCT(m.title), AVG(release_date) as `Popular date` FROM movies m
-	WHERE release_date=(
-		SELECT COUNT(release_date)
-        FROM movies
-        );	
+
+SELECT title, release_date FROM movies WHERE release_date = 
+(
+SELECT release_date FROM movies
+	GROUP BY release_date
+	ORDER BY COUNT(release_date) desc
+	LIMIT 1
+);
     
 -- Question 5
 
