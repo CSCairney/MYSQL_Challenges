@@ -92,12 +92,12 @@ ORDER BY `GNP` DESC
 LIMIT 10;
 
 -- Question 16
--- Stuck on this one
-SELECT country.name, COUNT(countrylanguage.CountryCode) FROM countrylanguage
-	JOIN country
-		ON countrylanguage.CountryCode = country.Code
-	WHERE `countrylanguage.language` IS NOT NULL
-	ORDER BY countrylanguage.CountryCode desc
+
+SELECT country.name, COUNT(cl.countrycode) FROM country
+	JOIN countrylanguage cl
+		ON cl.countrycode = country.code
+	GROUP BY country.name
+	ORDER BY COUNT(cl.countrycode) desc
     LIMIT 10;
 
 -- Question 17
